@@ -6,10 +6,20 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     @IBOutlet weak var TF_Email_Login: UITextField!
     @IBOutlet weak var TF_Password_Login: UITextField!
+    
+    struct User: Codable{
+        var idUsuario: Int?
+        var nombreUsuario:String?
+        var apPaterno:String?
+        var apMaterno:String?
+        var email:String?
+        var password:String?
+    }
     
     //Creamos un objeto de la clase Constantes para obtener la IP para usar los Web Services
     var const = Constantes()
@@ -27,11 +37,63 @@ class ViewController: UIViewController {
             {
                 if email != "" && password != ""
                 {
-                    print("Email: \(email)")
-                    print("Password: \(password)")
+                    //print("Email: \(email)")
+                    //print("Password: \(password)")
                     
-                    print("Se manda la solicitud")
+                    //Creamos un arreglo con los parametros para la petición GET para validar al usuario
+                    let parameters: Parameters=[
+                        "email":email,
+                        "password":password
+                    ]
                     
+                    //Creamos la URL donde esta ubicado el Web Service a usar
+                    
+                    let URL_USER_VALIDATION = "http://\(const.dir_ip)/orderit/validarUsuario.php"
+                    
+                    //Mandamos la petición GET
+                    AF.request(URL_USER_VALIDATION, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (responseData) in
+                        guard let data = responseData.data else { return }
+                        
+                        do
+                        {
+                            let usuario = try JSONDecoder().decode(User.self, from: data)
+                            
+                            if let idUsuario = usuario.idUsuario
+                            {
+                                if let nombreUsuario = usuario.nombreUsuario
+                                {
+                                    if let apPaterno = usuario.apPaterno
+                                    {
+                                        if let apMaterno = usuario.apMaterno
+                                        {
+                                            if let email = usuario.email
+                                            {
+                                                if let password = usuario.password
+                                                {
+                                                    print(idUsuario)
+                                                    print(nombreUsuario)
+                                                    print(apPaterno)
+                                                    print(apMaterno)
+                                                    print(email)
+                                                    print(password)
+                                                    
+                                                    print("LOGIN EXITOSO")
+                                                    
+                                                    self.performSegue(withIdentifier: "userValidated", sender: nil)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                self.showCredentialsErrorAlert()
+                            }
+                        } catch {
+                            print("Error decoding \(error)")
+                        }
+                    }
+                    
+
                     
                 }  else {
                     showNoEmptyFieldsAlert()
@@ -47,6 +109,18 @@ class ViewController: UIViewController {
     }
     
     //Funcion para mostrar un alert en caso de que haya un campo vacío en el formulario del Login
+    func showCredentialsErrorAlert ()
+    {
+        let alerta = UIAlertController(title: "Hubo un problema", message:"Usuario no encontrado o credenciales no validas", preferredStyle: .alert)
+        
+        let actionAceptar = UIAlertAction(title: "Aceptar", style:.default, handler: nil)
+        
+        alerta.addAction(actionAceptar)
+        
+        present(alerta, animated: true, completion: nil)
+    }
+    
+    //Funcion para mostrar un alert en caso de que las credenciales no sean validas o no exista el usuario
     func showNoEmptyFieldsAlert ()
     {
         let alerta = UIAlertController(title: "Hubo un problema", message:"No se permiten campos vacíos", preferredStyle: .alert)

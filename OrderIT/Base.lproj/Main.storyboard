@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Order IT - Login-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OrderIT" customModuleProvider="target" sceneMemberID="viewController">
@@ -84,12 +84,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4eZ-nq-Zlv" secondAttribute="trailing" id="nMS-2f-7Uk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Order IT - Login" id="wZz-pu-KPX">
+                    <navigationItem key="navigationItem" id="wZz-pu-KPX">
                         <barButtonItem key="backBarButtonItem" title="Regresar al Login" id="9TR-kc-e4k"/>
                     </navigationItem>
                     <connections>
                         <outlet property="TF_Email_Login" destination="EJJ-Y5-sBh" id="AJQ-Je-ytD"/>
                         <outlet property="TF_Password_Login" destination="N5p-Q6-RhO" id="VL4-yW-8Oi"/>
+                        <segue destination="W0e-Wt-BaD" kind="show" identifier="userValidated" id="mxa-5q-Z4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -177,20 +178,30 @@
             </objects>
             <point key="canvasLocation" x="1743" y="104"/>
         </scene>
-        <!--Platillos View Controller-->
+        <!--Platillos-->
         <scene sceneID="A3n-8f-BwB">
             <objects>
                 <viewController id="W0e-Wt-BaD" customClass="Platillos_ViewController" customModule="OrderIT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VK9-7V-2Lu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AQUÌ VA LA LISTA DE PLATILLOS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4u-2s-tu2">
+                                <rect key="frame" x="20" y="407" width="374" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="5Lk-Sh-q13"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Platillos" id="U52-zI-kxI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DiA-RP-eCT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1293" y="790"/>
+            <point key="canvasLocation" x="1323" y="829"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3GK-dq-RFD">
@@ -221,7 +232,36 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="103.79464285714285"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gIu-iD-hRT">
+            <objects>
+                <navigationController storyboardIdentifier="platillosVC" automaticallyAdjustsScrollViewInsets="NO" id="vYA-Qe-6Zh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AIx-gI-YOG">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" systemColor="systemGreenColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="R4r-Hq-AS5">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="W0e-Wt-BaD" kind="relationship" relationship="rootViewController" id="Snl-3I-SHm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gtT-zY-0fL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="546" y="816"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mxa-5q-Z4a"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="App_Background" width="600" height="700"/>

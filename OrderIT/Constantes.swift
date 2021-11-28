@@ -9,5 +9,5 @@ import Foundation
 
 public class Constantes
 {
-    let dir_ip:String = "10.10.9.49"
+    let dir_ip:String = "10.10.9.49:8888"
 }
