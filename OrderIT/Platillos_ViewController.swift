@@ -27,6 +27,9 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     var platillos = [Platillos]()
+    
+    typealias platillosCallback = (_ platillos:[Platillos]?, _ status:Bool, _ message:String) -> Void
+    var callBack:platillosCallback?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,24 +42,35 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
         TBL_Platillos.register(UINib(nibName: "Platillo_TableViewCell", bundle: nil), forCellReuseIdentifier: "celda")
         
         consultarPlatillos(URL: "http://\(const.dir_ip)/orderit/consultaRestaurantePedido.php")
+        completitionHandler { [weak self](platillos, status, message) in
+            if status
+            {
+                guard let self = self else {return}
+                guard let _platillos = platillos else {return}
+                self.platillos = _platillos
+                self.TBL_Platillos.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return platillos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var celda = TBL_Platillos.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! Platillo_TableViewCell
         
-        celda.LBL_Nombre_Restaurante.text = "El Tejaban"
-        celda.LBL_Tiempo_Entrega.text = "Tiempo estimado de entrega: 55-65 min"
-        celda.LBL_Costo_Entrega.text = "Costo de entrega: $25"
+        let plat = platillos[indexPath.row]
+        
+        celda.LBL_Nombre_Restaurante.text = plat.nombreRest
+        celda.LBL_Tiempo_Entrega.text = "Tiempo estimado de entrega: \(plat.tiempoEstimado ?? "")"
+        celda.LBL_Costo_Entrega.text = "Costo de entrega: $\(plat.costoEntrega ?? 0)"
         
         celda.LBL_Platillo_Static.text = "Platillo"
-        celda.LBL_Nombre_Platillo.text = "Mole Rojo con Pollo"
+        celda.LBL_Nombre_Platillo.text = plat.nombrePlatillo
         
         celda.LBL_Costo_Static.text = "Costo"
-        celda.LBL_Costo_Platillo.text = "$100.0"
+        celda.LBL_Costo_Platillo.text = "$\(plat.precio ?? 0)"
         
         return celda
     }
@@ -65,13 +79,18 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
     func consultarPlatillos(URL:String)
     {
         AF.request(URL, method: .get, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { ( responseData ) in
-            guard let data = responseData.data else { return }
+            guard let data = responseData.data else {
+                
+                self.callBack?(nil, false, "")
+                
+                return }
             
             do
             {
                 let platillos = try JSONDecoder().decode([Platillos].self, from: data)
                 
-                if let idRestaurante = platillos[1].idRestaurante
+                self.callBack?(platillos, true, "")
+                /*if let idRestaurante = platillos[1].idRestaurante
                 {
                     if let nombreRest = platillos[1].nombreRest
                     {
@@ -106,11 +125,16 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
                             }
                         }
                     }
-                }
+                }*/
             } catch {
-                print("Error decoding \(error)")
+                self.callBack?(nil, false, error.localizedDescription)
             }
         }
+    }
+    
+    func completitionHandler(callBack: @escaping platillosCallback)
+    {
+        self.callBack = callBack
     }
 
 }
