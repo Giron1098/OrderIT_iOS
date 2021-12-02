@@ -27,6 +27,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        //Recuperamos las credenciales guardadas previamente en caso de que un usuario se haya logueado correctamente
+        let defaults = UserDefaults.standard
+
+        if let correo = defaults.value(forKey: "correo") as? String
+        {
+            performSegue(withIdentifier: "userValidated", sender: self)
+        }
        
     }
     
@@ -78,6 +86,11 @@ class ViewController: UIViewController {
                                                     print(password)
                                                     
                                                     print("LOGIN EXITOSO")
+                                                    
+                                                    //Guardamos la sesión
+                                                    let defaults = UserDefaults.standard
+                                                    defaults.set(email,forKey: "correo")
+                                                    defaults.synchronize()
                                                     
                                                     self.performSegue(withIdentifier: "userValidated", sender: nil)
                                                 }

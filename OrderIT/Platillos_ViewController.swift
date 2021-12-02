@@ -28,6 +28,16 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var platillos = [Platillos]()
     
+    var idRestaurante_enviado: Int?
+    var nombreRest_enviado:String?
+    var direccion_enviado:String?
+    var horario_enviado:String?
+    var tiempoEstimado_enviado:String?
+    var costoEntrega_enviado:Int?
+    var idPlatillos_enviado:Int?
+    var nombrePlatillo_enviado:String?
+    var precio_enviado:Double?
+    
     typealias platillosCallback = (_ platillos:[Platillos]?, _ status:Bool, _ message:String) -> Void
     var callBack:platillosCallback?
 
@@ -38,6 +48,7 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         TBL_Platillos.dataSource = self
+        TBL_Platillos.delegate = self
         
         TBL_Platillos.register(UINib(nibName: "Platillo_TableViewCell", bundle: nil), forCellReuseIdentifier: "celda")
         
@@ -73,6 +84,16 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
         celda.LBL_Costo_Platillo.text = "$\(plat.precio ?? 0)"
         
         return celda
+    }
+    
+    //Identificar cuando un elemento de la tabla se selecciona
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row), \(platillos[indexPath.row])")
+        
+        TBL_Platillos.deselectRow(at: indexPath, animated: true)
+        
+        
+        performSegue(withIdentifier: "enviarDatosPlatillo", sender: self)
     }
     
 
