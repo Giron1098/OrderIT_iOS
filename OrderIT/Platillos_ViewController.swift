@@ -88,12 +88,51 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //Identificar cuando un elemento de la tabla se selecciona
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row), \(platillos[indexPath.row])")
+        print("\(indexPath.row)")
         
         TBL_Platillos.deselectRow(at: indexPath, animated: true)
         
-        
+        if let id_Restaurante = platillos[indexPath.row].idRestaurante, let NombreRest = platillos[indexPath.row].nombreRest, let direccion_rest = platillos[indexPath.row].direccion, let horario = platillos[indexPath.row].horario, let tiempoEstimado_rest = platillos[indexPath.row].tiempoEstimado, let costoEntrega_rest = platillos[indexPath.row].costoEntrega, let id_Platillos = platillos[indexPath.row].idPlatillos, let nombre_platillo = platillos[indexPath.row].nombrePlatillo, let precio_plat = platillos[indexPath.row].precio
+        {
+            print(id_Restaurante)
+            print(NombreRest)
+            print(direccion_rest)
+            print(horario)
+            print(tiempoEstimado_rest)
+            print(costoEntrega_rest)
+            print(id_Platillos)
+            print(nombre_platillo)
+            print(precio_plat)
+            
+            idRestaurante_enviado = id_Restaurante
+            nombreRest_enviado = NombreRest
+            direccion_enviado = direccion_rest
+            horario_enviado = horario
+            tiempoEstimado_enviado = tiempoEstimado_rest
+            costoEntrega_enviado = costoEntrega_rest
+            idPlatillos_enviado = id_Platillos
+            nombrePlatillo_enviado = nombre_platillo
+            precio_enviado = precio_plat
+            
+        }
         performSegue(withIdentifier: "enviarDatosPlatillo", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "enviarDatosPlatillo"
+        {
+            let objDestino = segue.destination as! PedidoViewController
+            
+            objDestino.idRestaurante_recibido = idRestaurante_enviado
+            objDestino.nombreRest_recibido = nombreRest_enviado
+            objDestino.direccion_recibido = direccion_enviado
+            objDestino.horario_recibido = horario_enviado
+            objDestino.tiempoEstimado_recibido = tiempoEstimado_enviado
+            objDestino.costoEntrega_recibido = costoEntrega_enviado
+            objDestino.idPlatillos_recibido = idPlatillos_enviado
+            objDestino.nombrePlatillo_recibido = nombrePlatillo_enviado
+            objDestino.precio_recibido = precio_enviado
+        }
     }
     
 
@@ -111,42 +150,6 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
                 let platillos = try JSONDecoder().decode([Platillos].self, from: data)
                 
                 self.callBack?(platillos, true, "")
-                /*if let idRestaurante = platillos[1].idRestaurante
-                {
-                    if let nombreRest = platillos[1].nombreRest
-                    {
-                        if let direccion = platillos[1].direccion
-                        {
-                            if let horario = platillos[1].horario
-                            {
-                                if let tiempoEstimado = platillos[1].tiempoEstimado
-                                {
-                                    if let costoEntrega = platillos[1].costoEntrega
-                                    {
-                                        if let idPlatillos = platillos[1].idPlatillos
-                                        {
-                                            if let nombrePlatillo = platillos[1].nombrePlatillo
-                                            {
-                                                if let precio = platillos[1].precio
-                                                {
-                                                    print("\(idRestaurante)")
-                                                    print(nombreRest)
-                                                    print(direccion)
-                                                    print(horario)
-                                                    print(tiempoEstimado)
-                                                    print("\(costoEntrega)")
-                                                    print("\(idPlatillos)")
-                                                    print(nombrePlatillo)
-                                                    print(precio)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }*/
             } catch {
                 self.callBack?(nil, false, error.localizedDescription)
             }

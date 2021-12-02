@@ -19,21 +19,41 @@ class PedidoViewController: UIViewController {
     var nombrePlatillo_recibido:String?
     var precio_recibido:Double?
 
+    @IBOutlet weak var LBL_NombreRestaurante: UILabel!
+    
+    @IBOutlet weak var LBL_NombrePlatillo: UILabel!
+    @IBOutlet weak var LBL_CostoPlatillo: UILabel!
+    
+    
+    @IBOutlet weak var LBL_Cantidad: UILabel!
+
+    @IBOutlet weak var LBL_CostoEntrega: UILabel!
+    
+    @IBOutlet weak var LBL_Total: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        LBL_NombreRestaurante.text = nombreRest_recibido
+        
+        print(nombrePlatillo_recibido)
+        LBL_NombrePlatillo.text = nombrePlatillo_recibido
+        LBL_CostoPlatillo.text = "\(precio_recibido!)"
+        
+        LBL_CostoEntrega.text = "\(costoEntrega_recibido!)"
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func STPR_Cantidad(_ sender: UIStepper) {
+        let cantidad:Int = Int(sender.value)
+        
+        LBL_Cantidad.text = "\(cantidad)"
     }
-    */
-
+    
+    @IBAction func BTN_CalcularTotal(_ sender: UIButton) {
+    }
+    
+    @IBAction func BTN_HacerPedido(_ sender: UIButton) {
+    }
 }
