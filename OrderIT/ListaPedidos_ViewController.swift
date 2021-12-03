@@ -20,17 +20,24 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
         
         TBL_Lista_Pedidos.dataSource = self
         TBL_Lista_Pedidos.delegate = self
+        
+        TBL_Lista_Pedidos.register(UINib(nibName: "Pedido_TableViewCell", bundle: nil), forCellReuseIdentifier: "celdaPedidos")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 11
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var celda = TBL_Lista_Pedidos.dequeueReusableCell(withIdentifier: "celdaPedidos", for: indexPath)
+        var celda = TBL_Lista_Pedidos.dequeueReusableCell(withIdentifier: "celdaPedidos", for: indexPath) as! Pedido_TableViewCell
         
-        celda.textLabel?.text = "Aqui van"
-        celda.detailTextLabel?.text = "los pedidos"
+        celda.LBL_Nombre_Restaurante.text = "Hamburguesas Mi Barrio"
+        celda.LBL_Fecha_Pedido.text = "21/11/2021"
+        celda.LBL_Costo_Entrega_Pedido.text = "$34"
+        celda.LBL_Nombre_Platillo_Pedido.text = "Papas a la Francesa"
+        celda.LBL_Costo_Platillo_Pedido.text = "$60"
+        celda.LBL_Cantidad_Pedido.text = "2"
+        celda.LBL_Total_Pedido.text = "$154"
         
         return celda
     }
