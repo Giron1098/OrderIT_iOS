@@ -312,11 +312,49 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="TBL_Lista_Pedidos" destination="Ine-7d-cpy" id="Vb7-C5-7J8"/>
+                        <segue destination="92w-sK-WQa" kind="show" identifier="rastreoPedido" id="Dlr-iw-ogm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7d-Xb-HN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="786.95652173913049" y="1565.625"/>
+        </scene>
+        <!--Rastreo Pedido View Controller-->
+        <scene sceneID="lIK-Jf-P1n">
+            <objects>
+                <viewController id="92w-sK-WQa" customClass="Rastreo_Pedido_ViewController" customModule="OrderIT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="55F-Gw-cg1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dBR-rc-R26">
+                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RASTREA TU PEDIDO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7w-7V-Q5w">
+                                <rect key="frame" x="64" y="100" width="286" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="A7A-MB-HzM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dBR-rc-R26" firstAttribute="bottom" secondItem="A7A-MB-HzM" secondAttribute="bottom" id="F0e-y0-vQJ"/>
+                            <constraint firstItem="dBR-rc-R26" firstAttribute="top" secondItem="C7w-7V-Q5w" secondAttribute="bottom" id="Fkw-oN-n5c"/>
+                            <constraint firstItem="C7w-7V-Q5w" firstAttribute="leading" secondItem="A7A-MB-HzM" secondAttribute="leading" constant="64" id="SeE-I0-JgT"/>
+                            <constraint firstItem="dBR-rc-R26" firstAttribute="leading" secondItem="A7A-MB-HzM" secondAttribute="leading" id="fjZ-gu-ZPe"/>
+                            <constraint firstItem="dBR-rc-R26" firstAttribute="top" secondItem="C7w-7V-Q5w" secondAttribute="bottom" id="oTs-tu-Xtr"/>
+                            <constraint firstItem="C7w-7V-Q5w" firstAttribute="top" secondItem="A7A-MB-HzM" secondAttribute="top" constant="12" id="pMH-JM-Eee"/>
+                            <constraint firstItem="dBR-rc-R26" firstAttribute="trailing" secondItem="A7A-MB-HzM" secondAttribute="trailing" id="rf2-jb-KZA"/>
+                            <constraint firstItem="A7A-MB-HzM" firstAttribute="trailing" secondItem="C7w-7V-Q5w" secondAttribute="trailing" constant="64" id="ufA-wK-RaZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ugo-fT-9Mo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uUr-4L-FnV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1653.6231884057972" y="1565.625"/>
         </scene>
         <!--Perfil-->
         <scene sceneID="F4V-tT-0Kr">

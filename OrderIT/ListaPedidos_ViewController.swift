@@ -103,6 +103,12 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
         return celda
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        TBL_Lista_Pedidos.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "rastreoPedido", sender: self)
+    }
+    
     func consultarPedidos(URL:String)
     {
         AF.request(URL, method: .get, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { ( responseData ) in
