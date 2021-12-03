@@ -236,7 +236,9 @@
                             <constraint firstItem="5Sw-8e-d14" firstAttribute="top" secondItem="5Lk-Sh-q13" secondAttribute="top" constant="15" id="iNl-tc-YTw"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Platillos" image="list.dash" catalog="system" id="peu-hm-NLl"/>
+                    <tabBarItem key="tabBarItem" title="Platillos" image="icons8-food-cart-30" id="peu-hm-NLl">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Platillos" id="U52-zI-kxI"/>
                     <connections>
                         <outlet property="TBL_Platillos" destination="8m5-pK-Gtb" id="tld-Le-5k9"/>
@@ -305,7 +307,9 @@
                             <constraint firstItem="Ine-7d-cpy" firstAttribute="top" secondItem="OPh-cH-5zb" secondAttribute="bottom" id="o23-FH-a6a"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mis pedidos" image="checkmark.circle" catalog="system" id="jcT-nV-Fxs"/>
+                    <tabBarItem key="tabBarItem" title="Mis pedidos" image="icons8-delivery-scooter-30" id="jcT-nV-Fxs">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="TBL_Lista_Pedidos" destination="Ine-7d-cpy" id="Vb7-C5-7J8"/>
                     </connections>
@@ -333,7 +337,9 @@
                         <viewLayoutGuide key="safeArea" id="CDx-DJ-o6n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Perfil" image="person.fill" catalog="system" id="Ipv-J9-65H"/>
+                    <tabBarItem key="tabBarItem" title="Perfil" image="icons8-male-user-30" id="Ipv-J9-65H">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Was-0r-06R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -456,6 +462,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TU PEDIDO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1r6-oa-SL7">
+                                <rect key="frame" x="131" y="111" width="152" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nHx-UM-Nr6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -518,8 +531,10 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="YU7-6V-nmo"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y1E-qU-Bew">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="W0e-Wt-BaD" kind="relationship" relationship="viewControllers" id="4Z9-Gv-ABE"/>
@@ -535,10 +550,10 @@
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="App_Background" width="600" height="700"/>
-        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
-        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="icons8-delivery-scooter-30" width="30" height="30"/>
+        <image name="icons8-food-cart-30" width="30" height="30"/>
+        <image name="icons8-male-user-30" width="30" height="30"/>
         <image name="order_it_logo" width="512" height="512"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
