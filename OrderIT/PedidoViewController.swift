@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PedidoViewController: UIViewController {
     
@@ -34,7 +35,7 @@ class PedidoViewController: UIViewController {
     var cantidadPedido:Double?
     var total:Double = 0.0
     
-    
+    var const = Constantes()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +55,8 @@ class PedidoViewController: UIViewController {
         let cantidad:Int = Int(sender.value)
         
         cantidadPedido = Double(sender.value)
-        LBL_Cantidad.text = "\(cantidad)"
-    }
-    
-    @IBAction func BTN_CalcularTotal(_ sender: UIButton) {
-
+        LBL_Cantidad.text = "\(cantidad.description)"
+        
         if let cantidad = cantidadPedido, let precio = precio_recibido, let costoEnvio = costoEntrega_recibido
         {
             
@@ -69,10 +67,13 @@ class PedidoViewController: UIViewController {
             total = (cantidad * precio) + Double(costoEnvio)
             
             //print("Total: $\(total)")
-            LBL_Total.text = "\(total)"
+            if total == Double(costoEnvio)
+            {
+                LBL_Total.text = "0"
+            } else {
+                LBL_Total.text = "\(total)"
+            }
         }
-        
-
     }
     
     @IBAction func BTN_HacerPedido(_ sender: UIButton) {
@@ -82,14 +83,51 @@ class PedidoViewController: UIViewController {
         
         dateF.locale = Locale(identifier: "es_MX")
         dateF.dateStyle = .short
+        
+        let fecha = dateF.string(from: date)
         print("DATOS PARA EL INSERT")
         
         let defaults = UserDefaults.standard
         
-        print("Fecha: \(dateF.string(from: date))")
-        print("Cantidad: \(cantidadPedido!)")
-        print("Total: \(total)")
-        print("ID Platillo: \(idPlatillos_recibido)")
-        print("ID Usuario: \(defaults.value(forKey: "id_usuario") as? Int)")
+        if let cantidad = cantidadPedido, let id_platillo = idPlatillos_recibido, let id_usuario = defaults.value(forKey: "id_usuario") as? Int, let costoEnvio = costoEntrega_recibido
+        {
+            if total != Double(costoEnvio)
+            {
+                /*print("Fecha: \(fecha)")
+                print("Cantidad: \(cantidad)")
+                print("Total: \(total)")
+                print("ID Platillo: \(id_platillo)")
+                print("ID Usuario: \(id_usuario)")*/
+                
+                let URL_Registro_Pedido = "http://\(const.dir_ip)/orderit/registroPedido.php?fecha=\(fecha)&cantidad=\(cantidad)&total=\(total)&Platillos_idPlatillos=\(id_platillo)&Usuario_idUsuario=\(id_usuario)"
+                                
+                registrarPedido(URL: URL_Registro_Pedido)
+            }
+        }
+    }
+    
+    func registrarPedido(URL:String)
+    {
+        //print(URL)
+            
+        AF.request(URL, method: .get, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { ( responseData ) in
+                guard let data = responseData.data else { return }
+                print(data)
+            self.showCompletitionAlert()
+        }
+    }
+    
+    //Funcion para mostrar un alert en caso de que el pedido se haya realizado correctamente
+    func showCompletitionAlert ()
+    {
+        let alerta = UIAlertController(title: "Completado", message:"Pedido realizado correctamente", preferredStyle: .alert)
+        
+        let actionAceptar = UIAlertAction(title: "Aceptar", style:.default) { (_) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alerta.addAction(actionAceptar)
+        
+        present(alerta, animated: true, completion: nil)
     }
 }
