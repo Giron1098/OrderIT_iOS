@@ -54,6 +54,7 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         self.navigationItem.setHidesBackButton(true, animated: true)
+        self.tabBarController?.navigationItem.hidesBackButton = true
         
         TBL_Platillos.dataSource = self
         TBL_Platillos.delegate = self

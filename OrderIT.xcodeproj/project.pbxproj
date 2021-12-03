@@ -19,6 +19,8 @@
 		0B7A8B0D274EEEB400953C24 /* Platillos_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A8B0C274EEEB400953C24 /* Platillos_ViewController.swift */; };
 		0B7A8B1027532E5700953C24 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A8B0F27532E5700953C24 /* Constantes.swift */; };
 		0BD05A842759563800D5172E /* PedidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD05A832759563800D5172E /* PedidoViewController.swift */; };
+		0BD05A872759E06600D5172E /* ListaPedidos_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD05A862759E06600D5172E /* ListaPedidos_ViewController.swift */; };
+		0BD05A8A2759E1D700D5172E /* Perfil_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD05A892759E1D700D5172E /* Perfil_ViewController.swift */; };
 		8AD2E43ED8D35774403C7CE7 /* Pods_OrderIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A480D1401EEAC31C0F3942B /* Pods_OrderIT.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		0B7A8B0C274EEEB400953C24 /* Platillos_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platillos_ViewController.swift; sourceTree = "<group>"; };
 		0B7A8B0F27532E5700953C24 /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		0BD05A832759563800D5172E /* PedidoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedidoViewController.swift; sourceTree = "<group>"; };
+		0BD05A862759E06600D5172E /* ListaPedidos_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaPedidos_ViewController.swift; sourceTree = "<group>"; };
+		0BD05A892759E1D700D5172E /* Perfil_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perfil_ViewController.swift; sourceTree = "<group>"; };
 		2469E048CAD1757C98A9E887 /* Pods-OrderIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderIT.debug.xcconfig"; path = "Target Support Files/Pods-OrderIT/Pods-OrderIT.debug.xcconfig"; sourceTree = "<group>"; };
 		5A480D1401EEAC31C0F3942B /* Pods_OrderIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrderIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A219B5E7391C6CE6EB6356 /* Pods-OrderIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderIT.release.xcconfig"; path = "Target Support Files/Pods-OrderIT/Pods-OrderIT.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				0B0DF1C127545FE3001991DB /* Platillo_TableViewCell.swift */,
 				0B0DF1C227545FE3001991DB /* Platillo_TableViewCell.xib */,
 				0BD05A832759563800D5172E /* PedidoViewController.swift */,
+				0BD05A862759E06600D5172E /* ListaPedidos_ViewController.swift */,
+				0BD05A892759E1D700D5172E /* Perfil_ViewController.swift */,
 			);
 			path = OrderIT;
 			sourceTree = "<group>";
@@ -228,8 +234,10 @@
 				0BD05A842759563800D5172E /* PedidoViewController.swift in Sources */,
 				0B0DF1C327545FE3001991DB /* Platillo_TableViewCell.swift in Sources */,
 				0B7A8AF9274EBF9700953C24 /* ViewController.swift in Sources */,
+				0BD05A8A2759E1D700D5172E /* Perfil_ViewController.swift in Sources */,
 				0B7A8B0A274EE94E00953C24 /* Registro_ViewController.swift in Sources */,
 				0B7A8AF5274EBF9700953C24 /* AppDelegate.swift in Sources */,
+				0BD05A872759E06600D5172E /* ListaPedidos_ViewController.swift in Sources */,
 				0B7A8AF7274EBF9700953C24 /* SceneDelegate.swift in Sources */,
 				0B7A8B1027532E5700953C24 /* Constantes.swift in Sources */,
 			);
