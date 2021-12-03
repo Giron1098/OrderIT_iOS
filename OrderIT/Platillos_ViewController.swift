@@ -44,7 +44,15 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let defaults = UserDefaults.standard
+
+        if let correo = defaults.value(forKey: "correo") as? String, let password = defaults.value(forKey: "password") as? String, let id_usuario = defaults.value(forKey: "id_usuario") as? Int
+        {
+            print("\(id_usuario)")
+            print(correo)
+            print(password)
+        }
+        
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         TBL_Platillos.dataSource = self

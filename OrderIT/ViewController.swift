@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         //Recuperamos las credenciales guardadas previamente en caso de que un usuario se haya logueado correctamente
         let defaults = UserDefaults.standard
 
-        if let correo = defaults.value(forKey: "correo") as? String
+        if let correo = defaults.value(forKey: "correo") as? String, let password = defaults.value(forKey: "password") as? String, let id_usuario = defaults.value(forKey: "id_usuario") as? Int
         {
             performSegue(withIdentifier: "userValidated", sender: self)
         }
@@ -89,7 +89,10 @@ class ViewController: UIViewController {
                                                     
                                                     //Guardamos la sesión
                                                     let defaults = UserDefaults.standard
+                                                    
+                                                    defaults.set(idUsuario,forKey: "id_usuario")
                                                     defaults.set(email,forKey: "correo")
+                                                    defaults.set(password, forKey: "password")
                                                     defaults.synchronize()
                                                     
                                                     self.performSegue(withIdentifier: "userValidated", sender: nil)
