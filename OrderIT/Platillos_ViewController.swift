@@ -46,9 +46,14 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
 
         let defaults = UserDefaults.standard
 
-        if let correo = defaults.value(forKey: "correo") as? String, let password = defaults.value(forKey: "password") as? String, let id_usuario = defaults.value(forKey: "id_usuario") as? Int
+        if let nombre_usuario = defaults.value(forKey: "nombre_usuario") as? String, let ap_paterno = defaults.value(forKey: "ap_paterno") as? String, let ap_materno = defaults.value(forKey: "ap_materno") as? String, let correo = defaults.value(forKey: "correo") as? String, let password = defaults.value(forKey: "password") as? String, let id_usuario = defaults.value(forKey: "id_usuario") as? Int
         {
             print("\(id_usuario)")
+            
+            print(nombre_usuario)
+            print(ap_paterno)
+            print(ap_materno)
+            
             print(correo)
             print(password)
         }

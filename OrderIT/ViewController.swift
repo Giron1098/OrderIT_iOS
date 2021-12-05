@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         //Recuperamos las credenciales guardadas previamente en caso de que un usuario se haya logueado correctamente
         let defaults = UserDefaults.standard
 
-        if let correo = defaults.value(forKey: "correo") as? String, let password = defaults.value(forKey: "password") as? String, let id_usuario = defaults.value(forKey: "id_usuario") as? Int
+        if let nombre_usuario = defaults.value(forKey: "nombre_usuario") as? String, let ap_paterno = defaults.value(forKey: "ap_paterno") as? String, let ap_materno = defaults.value(forKey: "ap_materno") as? String, let correo = defaults.value(forKey: "correo") as? String, let password = defaults.value(forKey: "password") as? String, let id_usuario = defaults.value(forKey: "id_usuario") as? Int
         {
             performSegue(withIdentifier: "userValidated", sender: self)
         }
@@ -78,12 +78,12 @@ class ViewController: UIViewController {
                                             {
                                                 if let password = usuario.password
                                                 {
-                                                    print(idUsuario)
+                                                    /*print(idUsuario)
                                                     print(nombreUsuario)
                                                     print(apPaterno)
                                                     print(apMaterno)
                                                     print(email)
-                                                    print(password)
+                                                    print(password)*/
                                                     
                                                     print("LOGIN EXITOSO")
                                                     
@@ -91,6 +91,11 @@ class ViewController: UIViewController {
                                                     let defaults = UserDefaults.standard
                                                     
                                                     defaults.set(idUsuario,forKey: "id_usuario")
+                                                    
+                                                    defaults.set(nombreUsuario,forKey: "nombre_usuario")
+                                                    defaults.set(apPaterno,forKey: "ap_paterno")
+                                                    defaults.set(apMaterno,forKey: "ap_materno")
+
                                                     defaults.set(email,forKey: "correo")
                                                     defaults.set(password, forKey: "password")
                                                     defaults.synchronize()

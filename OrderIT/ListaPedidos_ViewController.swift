@@ -25,12 +25,14 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
         var nombreRest:String?
         var costoEntrega:String?
         var direccion:String?
+        var tiempoEstimado:String?
     }
     
     var pedidos = [Pedidos]()
     
     var direccion_enviada:String?
     var nombreRest_enviado:String?
+    var tiempoEstimado_enviado:String?
     
     typealias pedidosCallback = (_ pedidos:[Pedidos]?, _ status:Bool, _ message:String) -> Void
     var callBack:pedidosCallback?
@@ -133,10 +135,11 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
         
         TBL_Lista_Pedidos.deselectRow(at: indexPath, animated: true)
         
-        if let direccion_restaurante = pedidos[indexPath.row].direccion, let nombre_restaurante = pedidos[indexPath.row].nombreRest
+        if let direccion_restaurante = pedidos[indexPath.row].direccion, let nombre_restaurante = pedidos[indexPath.row].nombreRest, let tiempo_estimado = pedidos[indexPath.row].tiempoEstimado
         {
             direccion_enviada = direccion_restaurante
             nombreRest_enviado = nombre_restaurante
+            tiempoEstimado_enviado = tiempo_estimado
         }
         
         performSegue(withIdentifier: "rastreoPedido", sender: self)
@@ -149,6 +152,7 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
             
             objDestino.direccion_recibida = direccion_enviada
             objDestino.nombreRest_recibido = nombreRest_enviado
+            objDestino.tiempoEstimado_recibido = tiempoEstimado_enviado
             
             objDestino.latitud_recibida = latitud
             objDestino.longitud_recibida = longitud

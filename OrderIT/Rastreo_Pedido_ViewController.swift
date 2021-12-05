@@ -17,6 +17,7 @@ class Rastreo_Pedido_ViewController: UIViewController, MKMapViewDelegate, CLLoca
     
     var direccion_recibida:String?
     var nombreRest_recibido:String?
+    var tiempoEstimado_recibido:String?
     
     var latitud_recibida:CLLocationDegrees!
     var longitud_recibida:CLLocationDegrees!
@@ -104,7 +105,7 @@ class Rastreo_Pedido_ViewController: UIViewController, MKMapViewDelegate, CLLoca
     //Trazado de ruta mediante la dirección recibida
     func trazarRuta()
     {
-        if let direccion = direccion_recibida, let nombre_restaurante = nombreRest_recibido
+        if let direccion = direccion_recibida, let nombre_restaurante = nombreRest_recibido, let tiempo_estimado = tiempoEstimado_recibido
         {
             let geocoder = CLGeocoder()
             
@@ -144,11 +145,25 @@ class Rastreo_Pedido_ViewController: UIViewController, MKMapViewDelegate, CLLoca
                     self.prepararTrazadoRuta(coordenadasDestino: ruta.coordinate)
                     self.MV_Rastreo_Pedido.showsUserLocation = true
                     
+                    self.showEstimatedTimeAlert(msg: "Tu pedido llegará en aproximadamente:\n \(tiempo_estimado).")
+                    
                 } else {
                     print("Ubicación del restaurante no encontrada")
                 }
             }
             
         }
+    }
+    
+    //Funcion para mostrar un alert con el tiempo de entrega estimado
+    func showEstimatedTimeAlert (msg:String)
+    {
+        let alerta = UIAlertController(title: "Aviso", message:msg, preferredStyle: .alert)
+        
+        let actionAceptar = UIAlertAction(title: "Aceptar", style:.default, handler: nil)
+        
+        alerta.addAction(actionAceptar)
+        
+        present(alerta, animated: true, completion: nil)
     }
 }
