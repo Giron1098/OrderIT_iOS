@@ -3,7 +3,7 @@ include 'conexion.php';
 $idUsuario=$_GET['idUsuario'];
 
 
-$sentencia=$conexion->prepare("SELECT idPedidos, fecha, cantidad, total, nombrePlatillo, precio, nombreRest, costoEntrega, direccion FROM pedidos INNER JOIN platillos INNER JOIN restaurante WHERE Usuarios_idUsuario=? AND Platillos_idPlatillos=platillos.idPlatillos AND restaurante.idRestaurante = platillos.Restaurante_idRestaurante ORDER BY idPedidos");
+$sentencia=$conexion->prepare("SELECT idPedidos, fecha, cantidad, total, nombrePlatillo, precio, nombreRest, costoEntrega, direccion, tiempoEstimado FROM pedidos INNER JOIN platillos INNER JOIN restaurante WHERE Usuarios_idUsuario=? AND Platillos_idPlatillos=platillos.idPlatillos AND restaurante.idRestaurante = platillos.Restaurante_idRestaurante ORDER BY idPedidos");
 $sentencia->bind_param('i',$idUsuario);
 $sentencia->execute();
 
