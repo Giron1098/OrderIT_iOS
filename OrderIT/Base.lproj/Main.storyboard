@@ -351,6 +351,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ugo-fT-9Mo"/>
+                    <connections>
+                        <outlet property="MV_Rastreo_Pedido" destination="dBR-rc-R26" id="yiI-ll-NeO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uUr-4L-FnV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

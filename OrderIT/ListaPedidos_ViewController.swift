@@ -7,8 +7,9 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
-class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate{
     
     @IBOutlet weak var TBL_Lista_Pedidos: UITableView!
     
@@ -28,8 +29,15 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
     
     var pedidos = [Pedidos]()
     
+    var direccion_enviada:String?
+    var nombreRest_enviado:String?
+    
     typealias pedidosCallback = (_ pedidos:[Pedidos]?, _ status:Bool, _ message:String) -> Void
     var callBack:pedidosCallback?
+    
+    var manager = CLLocationManager()
+    var latitud:CLLocationDegrees!
+    var longitud:CLLocationDegrees!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +47,12 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
         
         TBL_Lista_Pedidos.dataSource = self
         TBL_Lista_Pedidos.delegate = self
+        
+        manager.delegate = self
+        manager.requestWhenInUseAuthorization()
+        
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.startUpdatingLocation()
         
         let defaults = UserDefaults.standard
         
@@ -83,6 +97,18 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    //Obtener la ubicación
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first
+        {
+            print("Mis pedidos - Ubicación obtenida")
+            self.latitud = location.coordinate.latitude
+            self.longitud = location.coordinate.longitude
+        } else {
+            print("Mis pedidos - Error al obtener la ubicación")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pedidos.count
     }
@@ -106,7 +132,27 @@ class ListaPedidos_ViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         TBL_Lista_Pedidos.deselectRow(at: indexPath, animated: true)
+        
+        if let direccion_restaurante = pedidos[indexPath.row].direccion, let nombre_restaurante = pedidos[indexPath.row].nombreRest
+        {
+            direccion_enviada = direccion_restaurante
+            nombreRest_enviado = nombre_restaurante
+        }
+        
         performSegue(withIdentifier: "rastreoPedido", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "rastreoPedido"
+        {
+            let objDestino = segue.destination as! Rastreo_Pedido_ViewController
+            
+            objDestino.direccion_recibida = direccion_enviada
+            objDestino.nombreRest_recibido = nombreRest_enviado
+            
+            objDestino.latitud_recibida = latitud
+            objDestino.longitud_recibida = longitud
+        }
     }
     
     func consultarPedidos(URL:String)
