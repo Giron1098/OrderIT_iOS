@@ -182,7 +182,6 @@
                         <outlet property="TF_Email_Registro" destination="6bP-ef-Xp1" id="zbk-un-al5"/>
                         <outlet property="TF_Nombre_Registro" destination="LK4-Mf-sb3" id="Uy0-rM-x40"/>
                         <outlet property="TF_Password_Registro" destination="52N-0x-KpA" id="djQ-m8-W52"/>
-                        <segue destination="W0e-Wt-BaD" kind="show" identifier="newUserRegistered" id="Fe1-XP-tsn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mU0-4z-6cX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -198,7 +197,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8m5-pK-Gtb">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="celda" textLabel="BgP-0Z-26i" detailTextLabel="HJs-Kz-vyA" style="IBUITableViewCellStyleValue1" id="P5p-DD-1fc">
@@ -786,9 +785,6 @@
             <point key="canvasLocation" x="41" y="828"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Fe1-XP-tsn"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="App_Background" width="600" height="700"/>

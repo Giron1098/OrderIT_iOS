@@ -78,6 +78,21 @@ class Platillos_ViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        consultarPlatillos(URL: "http://\(const.dir_ip)/orderit/consultaRestaurantePedido.php")
+        completitionHandler { [weak self](platillos, status, message) in
+            if status
+            {
+                guard let self = self else {return}
+                guard let _platillos = platillos else {return}
+                self.platillos = _platillos
+                self.TBL_Platillos.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return platillos.count
     }

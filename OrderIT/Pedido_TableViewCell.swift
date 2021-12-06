@@ -22,6 +22,14 @@ class Pedido_TableViewCell: UITableViewCell {
     @IBOutlet weak var LBL_Cantidad_Pedido: UILabel!
     @IBOutlet weak var LBL_Total_Pedido: UILabel!
     
+    @IBOutlet weak var LBL_Pedido_el: UILabel!
+    @IBOutlet weak var LBL_Costo_de_entrega: UILabel!
+    @IBOutlet weak var LBL_Platillo: UILabel!
+    @IBOutlet weak var LBL_Costo: UILabel!
+    @IBOutlet weak var LBL_Cantidad: UILabel!
+    @IBOutlet weak var LBL_Total: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -156,12 +156,18 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="LBL_Cantidad" destination="hwB-ly-wx4" id="9JD-HB-Vjf"/>
                 <outlet property="LBL_Cantidad_Pedido" destination="oSf-Xl-qs2" id="0dl-AS-AUQ"/>
+                <outlet property="LBL_Costo" destination="04P-p9-se1" id="5sx-td-8eB"/>
                 <outlet property="LBL_Costo_Entrega_Pedido" destination="wMe-us-MWZ" id="l4N-aF-i3t"/>
                 <outlet property="LBL_Costo_Platillo_Pedido" destination="1V2-pW-V8G" id="jjS-Q4-z80"/>
+                <outlet property="LBL_Costo_de_entrega" destination="pjo-XF-Xhn" id="a9m-Hj-MCj"/>
                 <outlet property="LBL_Fecha_Pedido" destination="RBJ-0S-REL" id="VaN-DV-qQB"/>
                 <outlet property="LBL_Nombre_Platillo_Pedido" destination="qgL-SG-X2V" id="Jf7-BH-9qs"/>
                 <outlet property="LBL_Nombre_Restaurante" destination="k5I-JK-IfQ" id="3xI-bY-ndj"/>
+                <outlet property="LBL_Pedido_el" destination="7Ov-gP-3Xr" id="UZa-4k-CKF"/>
+                <outlet property="LBL_Platillo" destination="K1a-xC-6Ql" id="Ecs-Dh-MYx"/>
+                <outlet property="LBL_Total" destination="Hec-EA-aXq" id="Vke-Cd-PjN"/>
                 <outlet property="LBL_Total_Pedido" destination="qTd-f5-SQ5" id="bte-Nv-X4c"/>
             </connections>
             <point key="canvasLocation" x="2.8985507246376816" y="152.67857142857142"/>
