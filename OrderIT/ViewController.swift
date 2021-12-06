@@ -100,6 +100,9 @@ class ViewController: UIViewController {
                                                     defaults.set(password, forKey: "password")
                                                     defaults.synchronize()
                                                     
+                                                    self.TF_Email_Login.text = ""
+                                                    self.TF_Password_Login.text = ""
+                                                    
                                                     self.performSegue(withIdentifier: "userValidated", sender: nil)
                                                 }
                                             }
